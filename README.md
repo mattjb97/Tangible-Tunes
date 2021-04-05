@@ -16,11 +16,30 @@ https://lucid.app/lucidchart/invitations/accept/6052b201-88b4-4ad4-b5ea-b3a362b7
 
  ## Style CSS
 
- https://materializecss.com/collapsible.html
+ https://bulma.io/documentation/overview/start/
+
+
+## Things Used from Bulma
+
+- Search Bar - https://bulma.io/documentation/form/input/
+- Button Next to Search Bar - https://bulma.io/documentation/elements/button/
+
+
+- Columns - https://bulma.io/documentation/columns/basics/
+2 columns - left and right 
+Right Column is split into 2 rows
+
+-Footer - https://bulma.io/documentation/layout/footer/
+
+
+
+
+
+
 
  ## APIs being used
 
-https://rapidapi.com/brianiswu/api/genius?endpoint=apiendpoint_f2e5a6e1-5a0f-4c73-8402-51b2b6bc83e8
+https://developer.musixmatch.com/
 
 https://developers.google.com/youtube/v3/docs/videos/list
 
@@ -46,3 +65,7 @@ Big column on right will be split into 2 sections
     Top will display the video
     Bottom will show the lyrics
 Footer will show the APIs used and the contributors to the project
+
+
+
+
