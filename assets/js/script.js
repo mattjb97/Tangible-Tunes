@@ -17,6 +17,7 @@ var lyricsLocation = document.querySelector('.boxLyrics')
 
 
 
+
 const youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
 
 
@@ -58,7 +59,15 @@ searchBtn.addEventListener('click', submitForm);
 searchbutton.addEventListener('click', function (event) {
     console.log(input.value)
 
+
+
 });
+
+
+
+
+
+
 
 
 'https://www.googleapis.com/youtube/v3/videos'
