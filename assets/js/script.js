@@ -1,10 +1,7 @@
 
 var searchbutton = document.querySelector('.is-info')
-var input = document.querySelector('.input')
+var input = document.querySelector('#search')
 
-
-var searchBtn = document.querySelector('.is-info');
-var songInputEl = document.querySelector('#search');
 
 var firstSong = document.querySelector('.firstSong')
 var secondSong = document.querySelector('.secondSong')
@@ -106,7 +103,7 @@ $(document).ready(function () {
                 console.log(data)
                 data.items.forEach(item => {
                     video = `
-                <iframe class="has-ratio" width="640" height="360" src="https://www.youtube.com/embed/${item.id.videoId}" frameborder="0" 
+                <iframe class="has-ratio" width="360" height="360" src="https://www.youtube.com/embed/${item.id.videoId}" frameborder="0" 
                 allowfullscreen></iframe>
                 `
                     $('#videos').append(video)
