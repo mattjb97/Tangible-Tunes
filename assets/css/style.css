@@ -1,34 +1,59 @@
 
+/* Body */
+
 body {
     margin: 0px;
     padding: 0px;
 }
 
-.field.has-addons {
-display: flex;
-justify-content: flex-end;
 
-}
-
-.fa-headphones-alt {
-display: flex;
-margin: 0;
-padding: 0;
-
-
-}
-
+/* Header */
 .hero-body {
     border-style:solid;
 
 }
 
-.columns {
-    padding-left: 2rem;
-    padding-right: 2rem;
-    text-align: center;
+
+/* Top Left of HTML - Headphone Image and Tangible Tunes */
+
+.logo {
+    display: flex;
+    font-size: 1.2rem;
+    
     
 }
 
+#headphoneImage {
+    font-size: 2.4rem;
+}
+
+.tangible {
+padding-left: 10px;
+font-size: 1.6rem;
+}
+
+/* Search Bar */
+
+.field.has-addons {
+    display: flex;
+    justify-content: flex-end;
+    
+    }
 
 
+/* Columns for Song Choices and Video/Lyrics */
+
+    .columns {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        text-align: center;
+        
+    }
+    
+
+/* Where Song choices and Video/Lyrics Go */
+
+.box {
+    visibility: hidden;
+    
+    }
