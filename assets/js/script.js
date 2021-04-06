@@ -32,7 +32,8 @@ function getSongs (songTitle) {
             if (response.ok){
                 response.json().then(function(currentData){
                     console.log(currentData);
-                    // displaySongs(currentData, songTitle);
+                    songID=currentData.list.
+                    displaySongs(currentData, songTitle);
                     // getLyrics(currentData, songTitle);
                 });
             } else {
