@@ -1,0 +1,34 @@
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.field.has-addons {
+display: flex;
+justify-content: flex-end;
+
+}
+
+.fa-headphones-alt {
+display: flex;
+margin: 0;
+padding: 0;
+
+
+}
+
+.hero-body {
+    border-style:solid;
+
+}
+
+.columns {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+    
+}
+
+
+
