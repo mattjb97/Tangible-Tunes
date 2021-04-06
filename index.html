@@ -1,76 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Tangible Tunes</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <title>Tangible Tunes</title>
 </head>
 <header>
-    <section class="hero is-small is-primary">
-        <div class="hero-body">
-            <div class="logo">
-                <i class="fas fa-headphones-alt "> Tangible Tunes</i>
-             </div>
-            <div class="field has-addons">
-                <div class="control">
-                  <input class="input" type="text" placeholder="Search Song">
-                </div>
-                <div class="control">
-                  <a class="button is-info">
-                    Search
-                  </a>
-                </div>
-              </div>
+  <section class="hero is-small is-primary">
+    <div class="hero-body">
+      <div class="logo">
+        <i class="fas fa-headphones-alt "> Tangible Tunes</i>
+      </div>
+
+      <form class="field has-addons">
+        <div class="control">
+          <input id="search" class="input" type="text" placeholder="Search Song">
+
         </div>
-      </section>
+        <div id="form" class="control">
+          <a class="button is-info" value='Search'>
+            Search
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
 </header>
 
 <body>
-    
-    <div class="columns is-mobile is-centered">
-        <div class="column is-half">
-          <p class="notification is-primary">
-            Song Choices
-          </p>
-          <p class="firstSong"></p>
-          <p class="secondSong"></p>
-          <p class="thirdSong"></p>
-          <p class="fourthSong"></p>
-          <p class="fifthSong"></p>
-        </div>
-        <div class="column is-half">
-            <p class="notification is-primary">
-              Video & Lyrics
-            </p>
-          </div>
-      </div>
-    
 
-
-    
+  <div class="columns is-mobile is-centered">
+    <div class="column is-half">
+      <p class="notification is-primary">
+        Song Choices
+      </p>
+      <p class="firstSong"></p>
+      <p class="secondSong"></p>
+      <p class="thirdSong"></p>
+      <p class="fourthSong"></p>
+      <p class="fifthSong"></p>
+    </div>
+    <p class="notification is-primary">
+      Video & Lyrics
+    </p>
+    <div id="videos" class="column is-half">
+      
+    </div>
+  </div>
 
 
 
 
 
-    <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-          </p>
-        </div>
-      </footer>
 
 
-    <script src="./assets/js/script.js"></script>
+
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
-
-
-
