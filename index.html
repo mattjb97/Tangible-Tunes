@@ -17,16 +17,16 @@
                 <i class="fas fa-headphones-alt style="float:left" id="headphoneImage"></i>
                 <p class ="tangible">Tangible Tunes</p>
              </div>
-            <div class="field has-addons">
+            <form class="field has-addons">
                 <div class="control">
-                  <input class="input" type="text" placeholder="Search Song">
+                  <input class="input" type="text" placeholder="Search Song" id="search">
                 </div>
-                <div class="control">
+                <div id ="form" class="control">
                   <a class="button is-info">
                     Search
                   </a>
                 </div>
-              </div>
+            </form>
         </div>
       </section>
 </header>
@@ -50,7 +50,8 @@
             <p class="notification is-primary">
               Video & Lyrics
             </p>
-            <div class="box boxVideo">
+
+            <div class="box" id="videos">
             </div>
             <div class="box boxLyrics">
             </div>
@@ -80,6 +81,8 @@
       </footer>
 
 
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
