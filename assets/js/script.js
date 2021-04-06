@@ -17,12 +17,12 @@ var lyricsLocation = document.querySelector('.boxLyrics')
 
 
 
-<<<<<<< HEAD
+
 
 const youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
 
 
-<<<<<<< HEAD
+
 //From Brian Import:
 // MusixMatch 'UT Student's' appid	6a4d09aa7c7bc21dd8f981caaf324cda
 
@@ -34,37 +34,27 @@ var songInputEl = document.querySelector(".musicForm");
 
 
 // Functions
-=======
->>>>>>> fdf6f0fa81cd7873844abb2c85f17061df8502e7
-
 var submitForm = function (event) {
     event.preventDefault();
     var songSearch = songInputEl.value.trim();
     if (songSearch) {
         getSongs(songSearch);
         songInputEl.value = '';
+        cityInputEl.value = '';
     } else {
         alert('Please enter the name of a song');
     }
 };
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> fdf6f0fa81cd7873844abb2c85f17061df8502e7
 function getSongs (songTitle) {
-    var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
+    var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
     fetch(apiUrl).then (function(response){
             if (response.ok){
                 response.json().then(function(currentData){
-                    console.log(currentData);
-<<<<<<< HEAD
-                    songID=currentData.list.
-                    displaySongs(currentData, songTitle);
-=======
-                    // displaySongs(currentData, songTitle);
->>>>>>> fdf6f0fa81cd7873844abb2c85f17061df8502e7
+                    // console.log(currentData);
+                    var songList=currentData.message.body.track_list;
+                    console.log(songList);
+                    displayList(songList);
                     // getLyrics(currentData, songTitle);
                 });
             } else {
@@ -76,21 +66,23 @@ function getSongs (songTitle) {
         });
 };
 
-<<<<<<< HEAD
+function displayList (songArray){
+    var appendEl = document.querySelector(".list-group");
+    appendEl.value = ""; 
+    for (var i=0; i< songArray.length; i++) {
+        var appendEl = document.querySelector(".list-group");
+        var liEl = document.createElement("li");
+        liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
+        liEl.classList.add("list-group-item");
+        appendEl.appendChild(liEl)[i];
+    }
+
+
+}
+
 // Event Listeners
 searchBtn.addEventListener('click', submitForm);
 
-
-
-
-
-
-=======
-searchBtn.addEventListener('click', submitForm);
-
->>>>>>> fdf6f0fa81cd7873844abb2c85f17061df8502e7
-=======
->>>>>>> 988ee9d670bae00f8170eba68cd71f31e5e021fa
 //onclick search button consol logs in the input box with place holder 'Search Song'
 searchbutton.addEventListener('click', function (event) {
     console.log(input.value)
