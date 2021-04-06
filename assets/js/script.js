@@ -1,6 +1,11 @@
 
 var searchbutton = document.querySelector('.is-info')
-var input = document.querySelector('#search')
+var input = document.querySelector('.input')
+
+
+var searchBtn = document.querySelector('.is-info');
+var songInputEl = document.querySelector('#search');
+
 var firstSong = document.querySelector('.firstSong')
 var secondSong = document.querySelector('.secondSong')
 var thirdSong = document.querySelector('.thirdSong')
@@ -8,11 +13,16 @@ var fourthSong = document.querySelector('.fourthSong')
 var fifthSong = document.querySelector('.fifthSong')
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
+
+
+
 //onclick search button consol logs in the input box with place holder 'Search Song'
 searchbutton.addEventListener('click', function (event) {
     console.log(input.value)
     event.preventDefault();
 });
+
+
 $(document).ready(function () {
     var youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
     var video = ''
@@ -38,3 +48,4 @@ $(document).ready(function () {
             })
     }
 })
+
