@@ -15,75 +15,61 @@ var lyricsLocation = document.querySelector('.boxLyrics')
 
 
 
-const youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
 
-
-
-//From Brian Import:
 // MusixMatch 'UT Student's' appid	6a4d09aa7c7bc21dd8f981caaf324cda
 
-// DOM Vars
-var searchBtn = document.getElementById("button-addon");
-var songInputEl = document.querySelector(".musicForm");
-
-// Global Vars
 
 
-// Functions
-var submitForm = function (event) {
-    event.preventDefault();
-    var songSearch = songInputEl.value.trim();
-    if (songSearch) {
-        getSongs(songSearch);
-        songInputEl.value = '';
-        cityInputEl.value = '';
-    } else {
-        alert('Please enter the name of a song');
-    }
-};
 
-function getSongs (songTitle) {
-    var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
-    fetch(apiUrl).then (function(response){
-            if (response.ok){
-                response.json().then(function(currentData){
-                    // console.log(currentData);
-                    var songList=currentData.message.body.track_list;
-                    console.log(songList);
-                    displayList(songList);
-                    // getLyrics(currentData, songTitle);
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        })
-        .catch(function (error) {
-            alert('Unable to connect to MusiXmatch');
-        });
-};
-
-function displayList (songArray){
-    var appendEl = document.querySelector(".list-group");
-    appendEl.value = ""; 
-    for (var i=0; i< songArray.length; i++) {
-        var appendEl = document.querySelector(".list-group");
-        var liEl = document.createElement("li");
-        liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
-        liEl.classList.add("list-group-item");
-        appendEl.appendChild(liEl)[i];
-    }
+// searchbutton.addEventListener('click', function (event) {
+//     console.log(input.value)
+//     event.preventDefault();
+// });
 
 
-}
+// $(document).ready(function () {
+//     $('#form').on('click', function (event) {
+//         event.preventDefault()
+//         var search = $('#search').val()
+//         getSongs(search)
+//     })
 
-// Event Listeners
-searchBtn.addEventListener('click', submitForm);
+//     function getSongs(songTitle) {
+//         var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
+//         fetch(apiUrl).then(function (response) {
+//             if (response.ok) {
+//                 response.json().then(function (currentData) {
+//                     console.log(currentData);
+//                     var songList = currentData.message.body.track_list;
+//                     console.log(songList);
+//                     displayList(songList);
+//                 });
+//             } else {
+//                 alert('Error: ' + response.statusText);
+//             }
+//         })
+//             .catch(function (error) {
+//                 alert('Unable to connect to MusiXmatch');
+//             });
+//     };
 
-//onclick search button consol logs in the input box with place holder 'Search Song'
-searchbutton.addEventListener('click', function (event) {
-    console.log(input.value)
-    event.preventDefault();
-});
+//     function displayList(songArray) {
+//         var appendEl = document.querySelector(".list-group");
+//         appendEl.value = "";
+//         for (var i = 0; i < songArray.length; i++) {
+//             var appendEl = document.querySelector(".list-group");
+//             var liEl = document.createElement("li");
+//             liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
+//             liEl.classList.add("list-group-item");
+//             $('.list-group').append(liEl)[i]
+           
+
+//         }
+
+        
+//     }
+// });
+
 
 
 $(document).ready(function () {
