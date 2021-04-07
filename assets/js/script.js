@@ -1,4 +1,3 @@
-
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
 
@@ -114,5 +113,3 @@ function videoSearch(key, search, maxResults) {
             });
         })
 }
-
-
