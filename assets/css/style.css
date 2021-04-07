@@ -1,46 +1,31 @@
 
 /* Body */
-
 body {
     margin: 0px;
     padding: 0px;
 }
-
-
 /* Header */
 .hero-body {
     border-style:solid;
-
 }
-
-
 /* Top Left of HTML - Headphone Image and Tangible Tunes */
-
 .logo {
     display: flex;
     font-size: 1.2rem;
 }
-
 #headphoneImage {
     font-size: 2.4rem;
 }
-
 .tangible {
 padding-left: 10px;
 font-size: 1.6rem;
 }
-
 /* Search Bar */
-
 .field.has-addons {
     display: flex;
     justify-content: flex-end;
-    
     }
-
-
 /* Columns for Song Choices and Video/Lyrics */
-
     .columns {
         padding-left: 2rem;
         padding-right: 2rem;
