@@ -1,6 +1,16 @@
 
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
+<<<<<<< HEAD
+=======
+
+
+var firstSong = document.querySelector('.firstSong')
+var secondSong = document.querySelector('.secondSong')
+var thirdSong = document.querySelector('.thirdSong')
+var fourthSong = document.querySelector('.fourthSong')
+var fifthSong = document.querySelector('.fifthSong')
+>>>>>>> 673ebe418254d9362bd4cb4b8a60ac2383216ba6
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
 
@@ -8,10 +18,8 @@ var lyricsLocation = document.querySelector('.boxLyrics')
 
 
 
-const youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
 
-
-
+<<<<<<< HEAD
 
 
 // Functions
@@ -62,10 +70,15 @@ function displayList (songArray){
 
     }
 }
+=======
+// MusixMatch 'UT Student's' appid	6a4d09aa7c7bc21dd8f981caaf324cda
+
+>>>>>>> 673ebe418254d9362bd4cb4b8a60ac2383216ba6
 
 function apiFX(songID, songArtist, songName){
     var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
 
+<<<<<<< HEAD
     console.log(apiUrl2);
 
     fetch(apiUrl2).then (function(response){
@@ -87,12 +100,58 @@ function apiFX(songID, songArtist, songName){
         });
 
 }
+=======
 
-//onclick search button consol logs in the input box with place holder 'Search Song'
-searchbutton.addEventListener('click', function (event) {
-    console.log(input.value)
-    event.preventDefault();
-});
+// searchbutton.addEventListener('click', function (event) {
+//     console.log(input.value)
+//     event.preventDefault();
+// });
+
+
+// $(document).ready(function () {
+//     $('#form').on('click', function (event) {
+//         event.preventDefault()
+//         var search = $('#search').val()
+//         getSongs(search)
+//     })
+
+//     function getSongs(songTitle) {
+//         var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
+//         fetch(apiUrl).then(function (response) {
+//             if (response.ok) {
+//                 response.json().then(function (currentData) {
+//                     console.log(currentData);
+//                     var songList = currentData.message.body.track_list;
+//                     console.log(songList);
+//                     displayList(songList);
+//                 });
+//             } else {
+//                 alert('Error: ' + response.statusText);
+//             }
+//         })
+//             .catch(function (error) {
+//                 alert('Unable to connect to MusiXmatch');
+//             });
+//     };
+
+//     function displayList(songArray) {
+//         var appendEl = document.querySelector(".list-group");
+//         appendEl.value = "";
+//         for (var i = 0; i < songArray.length; i++) {
+//             var appendEl = document.querySelector(".list-group");
+//             var liEl = document.createElement("li");
+//             liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
+//             liEl.classList.add("list-group-item");
+//             $('.list-group').append(liEl)[i]
+           
+
+//         }
+
+        
+//     }
+// });
+>>>>>>> 673ebe418254d9362bd4cb4b8a60ac2383216ba6
+
 
 
 $(document).ready(function () {
