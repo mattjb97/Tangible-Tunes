@@ -1,4 +1,3 @@
-
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
 
@@ -51,45 +50,8 @@ function displayList(songArray) {
         appendEl.appendChild(liEl)
     })
 
-    function getSongs(songTitle) {
-        var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
-        fetch(apiUrl).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (currentData) {
-                    console.log(currentData);
-                    var songList = currentData.message.body.track_list;
-                    console.log(songList);
-                    displayList(songList);
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        })
-            .catch(function (error) {
-                alert('Unable to connect to MusiXmatch');
-            });
-    };
 
-    function displayList (songArray){
-        var appendEl = document.querySelector(".list-group");
-        appendEl.innerHTML = ""; 
-        for (var i=0; i< songArray.length; i++) {
-    
-            var liEl = document.createElement("button");
-    
-            liEl.addEventListener("click", apiFX(songArray[i].track.track_id, songArray[i].track.artist_name, songArray[i].track.track_name));
-    
-            liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
-    
-            liEl.classList.add("list-group-item");
-    
-            appendEl.appendChild(liEl)[i];
-    
-        }
-    }
-};
-
-
+}
 
 
 
@@ -98,44 +60,30 @@ function apiFX(songID, songArtist, songName) {
 
     console.log(apiUrl2);
 
-    fetch(apiUrl2).then (function(response){
-            if (response.ok){
-                response.json().then( data => {
-                    console.log(lyrics);
-                    console.log(songArtist);
-                    console.log(songName);
-                    // var songList=currentData.message.body.track_list;
-                    // console.log(songList);
-                    // displayList(songList);
-                    
-                    var lyricsPop = data['message']['body']['lyrics']['lyrics_body']; 
+    fetch(apiUrl2).then(function (response) {
+        if (response.ok) {
+            response.json().then(data => {
+                console.log(lyrics);
+                console.log(songArtist);
+                console.log(songName);
+                // var songList=currentData.message.body.track_list;
+                // console.log(songList);
+                // displayList(songList);
 
-                    lyricsLocation.innerHTML = lyricsPop;
-                    console.log(data);
-                    
-                });
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        })
+                var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
+
+                lyricsLocation.innerHTML = lyricsPop;
+
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
         .catch(function (error) {
             alert('Unable to connect to MusiXmatch');
         });
 
 }
-
-$(document).ready(function () {
-    $('.list-group').on('click', function (event) {
-        var listEl = document.getElementsByClassName("list-group-item");
-        console.log(listEl)
-        event.preventDefault()
-    })
-});
-
-
-
-
-
 
 
 
@@ -165,5 +113,3 @@ function videoSearch(key, search, maxResults) {
             });
         })
 }
-
-
