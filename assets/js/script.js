@@ -1,8 +1,6 @@
 
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
-
-
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
 
@@ -16,16 +14,11 @@ searchbutton.addEventListener('click', function (event) {
 
 
 
-// MusixMatch 'UT Student's' appid	6a4d09aa7c7bc21dd8f981caaf324cda
+
+
 
 
 // Event Listeners
-
-
-searchbutton.addEventListener('click', function (event) {
-    console.log(input.value)
-    event.preventDefault();
-});
 
 
 $(document).ready(function () {
@@ -54,22 +47,67 @@ $(document).ready(function () {
             });
     };
 
-    function displayList(songArray) {
+    function displayList (songArray){
         var appendEl = document.querySelector(".list-group");
-        appendEl.value = "";
-        for (var i = 0; i < songArray.length; i++) {
-            var appendEl = document.querySelector(".list-group");
+        appendEl.innerHTML = ""; 
+        for (var i=0; i< songArray.length; i++) {
+    
             var liEl = document.createElement("li");
+    
+            liEl.addEventListener("click", apiFX(songArray[i].track.track_id, songArray[i].track.artist_name, songArray[i].track.track_name));
+    
             liEl.textContent = "Artist: " + songArray[i].track.artist_name + " - Song: " + songArray[i].track.track_name;
+    
             liEl.classList.add("list-group-item");
-            $('.list-group').append(liEl)[i]
-           
-
+    
+            appendEl.appendChild(liEl)[i];
+    
         }
-
-        
     }
 });
+
+
+$(document).ready(function () {
+    $('.list-group').on('click', function (event) {
+        var listEl = document.getElementsByClassName("list-group-item");
+        console.log(listEl)
+        event.preventDefault()
+    })
+});
+
+
+
+
+function apiFX(songID, songArtist, songName){
+    var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
+
+    console.log(apiUrl2);
+
+    fetch(apiUrl2).then (function(response){
+            if (response.ok){
+                response.json().then( data => {
+                    console.log(lyrics);
+                    console.log(songArtist);
+                    console.log(songName);
+                    // var songList=currentData.message.body.track_list;
+                    // console.log(songList);
+                    // displayList(songList);
+                    
+                    var lyricsPop = data['message']['body']['lyrics']['lyrics_body']; 
+
+                    lyricsLocation.innerHTML = lyricsPop;
+                    
+                });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        })
+        .catch(function (error) {
+            alert('Unable to connect to MusiXmatch');
+        });
+
+}
+
 
 
 
