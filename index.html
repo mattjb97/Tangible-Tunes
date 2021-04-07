@@ -7,24 +7,26 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
     <title>Tangible Tunes</title>
 </head>
 <header>
     <section class="hero is-small is-primary">
         <div class="hero-body">
             <div class="logo">
-                <i class="fas fa-headphones-alt "> Tangible Tunes</i>
+                <i class="fas fa-headphones-alt style="float:left" id="headphoneImage"></i>
+                <p class ="tangible">Tangible Tunes</p>
              </div>
-            <div class="field has-addons">
+            <form class="field has-addons">
                 <div class="control">
-                  <input class="input" type="text" placeholder="Search Song">
+                  <input class="input" type="text" placeholder="Search Song" id="search">
                 </div>
-                <div class="control">
+                <div id ="form" class="control">
                   <a class="button is-info">
                     Search
                   </a>
                 </div>
-              </div>
+            </form>
         </div>
       </section>
 </header>
@@ -36,16 +38,23 @@
           <p class="notification is-primary">
             Song Choices
           </p>
-          <p class="firstSong"></p>
-          <p class="secondSong"></p>
-          <p class="thirdSong"></p>
-          <p class="fourthSong"></p>
-          <p class="fifthSong"></p>
+          <ul class="box list-group songList">
+          <!-- <li><p class="firstSong"></p></li>
+          <li><p class="secondSong"></p></li>
+          <li><p class="thirdSong"></p></li>
+          <li><p class="fourthSong"></p></li>
+          <li><p class="fifthSong"></p></li> -->
+          </ul>
         </div>
         <div class="column is-half">
             <p class="notification is-primary">
               Video & Lyrics
             </p>
+
+            <div class="box boxVideo" id="videos">
+            </div>
+            <div class="box boxLyrics" id="lyrics">
+            </div>
           </div>
       </div>
     
@@ -59,18 +68,21 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
+            
           <p>
             <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
             <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
             is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
           </p>
+          <p>
+            This application was made by <strong>Matthew Bohl</strong>, <strong>Brian Bellanger</strong>, and <strong>Adam Reed</strong>.
+        </p>
         </div>
       </footer>
 
 
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
-
-
-
