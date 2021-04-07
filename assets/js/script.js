@@ -52,7 +52,7 @@ $(document).ready(function () {
         appendEl.innerHTML = ""; 
         for (var i=0; i< songArray.length; i++) {
     
-            var liEl = document.createElement("li");
+            var liEl = document.createElement("button");
     
             liEl.addEventListener("click", apiFX(songArray[i].track.track_id, songArray[i].track.artist_name, songArray[i].track.track_name));
     
@@ -66,14 +66,6 @@ $(document).ready(function () {
     }
 });
 
-
-$(document).ready(function () {
-    $('.list-group').on('click', function (event) {
-        var listEl = document.getElementsByClassName("list-group-item");
-        console.log(listEl)
-        event.preventDefault()
-    })
-});
 
 
 
@@ -96,6 +88,7 @@ function apiFX(songID, songArtist, songName){
                     var lyricsPop = data['message']['body']['lyrics']['lyrics_body']; 
 
                     lyricsLocation.innerHTML = lyricsPop;
+                    console.log(data);
                     
                 });
             } else {
@@ -107,6 +100,19 @@ function apiFX(songID, songArtist, songName){
         });
 
 }
+
+$(document).ready(function () {
+    $('.list-group').on('click', function (event) {
+        var listEl = document.getElementsByClassName("list-group-item");
+        console.log(listEl)
+        event.preventDefault()
+    })
+});
+
+
+
+
+
 
 
 
