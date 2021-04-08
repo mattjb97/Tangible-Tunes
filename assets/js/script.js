@@ -4,6 +4,9 @@ var songListT = document.querySelector('.songList');
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
 var songSearches = [];
+var previousSearch = document.querySelector('#searchHistory')
+var youtubekey = 'AIzaSyClOnNDd4howxJo-Q-1PXhG2Y__Jo44jP4'
+var video = ''
 
 // when clicking the search button the result is then taken and given a variable 
 $('#form').on('click', function (event) {
@@ -42,8 +45,43 @@ function getSongs(songTitle) {
 //stores the searches in local storage 
 function storeSong() {
     localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    return;
+    getSongHistory();
 };
+
+//takes song history
+function getSongHistory() {
+    songSearchList = JSON.parse(localStorage.getItem("searchSong"));
+    if (!songSearchList) {
+        console.log('no history yet');
+    } else {
+        console.log(songSearchList);
+        printSongHistory(songSearchList);
+    }
+};
+
+function printSongHistory(songSearchList) {
+    previousSearch.innerHTML = '';
+    for (var i = 0; i < songSearchList.length; i++) {
+        var liEl2 = document.createElement("li");
+        liEl2.addEventListener('click', function () {searching(event)})
+        liEl2.textContent = songSearchList[i];
+        previousSearch.appendChild(liEl2)[i];
+    }
+}
+
+//clicking on your history searches for it again
+function searching (event) {
+console.log(event.target.value)
+    event.preventDefault()
+    var search = event.target.textContent
+    getSongs(search)
+    videoSearch(youtubekey, search, 5)
+    //removes old lyrics and clears search bar on the click
+    lyricsLocation.innerHTML = "";
+    videoLocation.style.visibility = 'visible';
+    lyricsLocation.style.visibility = 'visible';
+    songListT.style.visibility = 'visible';
+}
 
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
 function displayList(songArray) {
@@ -71,6 +109,8 @@ function apiFX(songID, songArtist, songName) {
                 console.log(songName);
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
                 lyricsLocation.innerHTML = lyricsPop;
+                lyricsLocation.innerHTML = lyricsPop;
+
             });
             // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
             if (lyricsPop === undefined) {
@@ -78,24 +118,14 @@ function apiFX(songID, songArtist, songName) {
             }
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
-
         }
     })
         .catch(function (error) {
             lyricsLocation.innerHTML = 'No Lyrics Found';
-
         });
 }
 
-//adds the previous serches to local storage 
-function storeSong() {
-    localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    return;
-};
-
 //sets variables for youtubes api key and the search input on click
-var youtubekey = 'AIzaSyClOnNDd4howxJo-Q-1PXhG2Y__Jo44jP4'
-var video = ''
 $('#form').on('click', function (event) {
     event.preventDefault()
     console.log('clicked')
