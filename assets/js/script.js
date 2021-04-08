@@ -66,7 +66,7 @@ function storeSong() {
 
 //stores the searches in local storage 
 function storeSong () {
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
     localStorage.setItem("searchSong", JSON.stringify(songSearches));
     getSongHistory();
 };
