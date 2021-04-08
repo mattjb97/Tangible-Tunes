@@ -17,9 +17,8 @@ $('#form').on('click', function (event) {
     videoLocation.style.visibility = 'visible';
     lyricsLocation.style.visibility = 'visible';
     songListT.style.visibility = 'visible';
-
-
 })
+
 //takes value on the input variable and places it into the URL of the musixmatch API 
 function getSongs(songTitle) {
     var apiUrl = 'https://api.musixmatch.com/ws/1.1/track.search?q_track=' + songTitle + '&page_size=5&s_track_rating=desc&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
@@ -40,14 +39,11 @@ function getSongs(songTitle) {
         });
 };
 
-
-
 //stores the searches in local storage 
-function storeSong () {
+function storeSong() {
     localStorage.setItem("searchSong", JSON.stringify(songSearches));
     return;
 };
-
 
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
 function displayList(songArray) {
@@ -62,7 +58,6 @@ function displayList(songArray) {
         appendEl.appendChild(liEl)
     })
 }
-
 
 //the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
 function apiFX(songID, songArtist, songName) {
@@ -80,18 +75,15 @@ function apiFX(songID, songArtist, songName) {
             // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
             if (lyricsPop === undefined) {
                 lyricsLocation.innerHTML = 'No lyrics found';
-
             }
-           
-           
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
-            
+
         }
     })
         .catch(function (error) {
             lyricsLocation.innerHTML = 'No Lyrics Found';
-            
+
         });
 }
 
@@ -112,6 +104,7 @@ $('#form').on('click', function (event) {
     videoSearch(youtubekey, search, 5)
     console.log(search.value)
 })
+
 //takes the variables runs them through the youtube API and then dynamically generates the videos on the right
 function videoSearch(key, search, maxResults) {
     $('#videos').empty()
