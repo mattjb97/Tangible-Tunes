@@ -3,33 +3,36 @@
 
 
 
-## Wire Frame
-
-https://lucid.app/lucidchart/invitations/accept/6052b201-88b4-4ad4-b5ea-b3a362b7878c?viewport_loc=-4036%2C-1469%2C3498%2C1761%2C0_0
+## Active Link
 
 
 
 
-## User Story
-
- As a Dedicated music lover, I want to be able to bring up a piece of music from Youtube, and the corresponding lyrics are populated in the column next to the video. 
-
- ## Style CSS
-
- https://bulma.io/documentation/overview/start/
 
 
-## Things Used from Bulma
+# User Story
 
-- Search Bar - https://bulma.io/documentation/form/input/
-- Button Next to Search Bar - https://bulma.io/documentation/elements/button/
+ ## As a dedicated music lover, I want the ability to search a song up by name and be able to see lyrics and a video for the song I have searched.
 
 
-- Columns - https://bulma.io/documentation/columns/basics/
-2 columns - left and right 
-Right Column is split into 2 rows
 
--Footer - https://bulma.io/documentation/layout/footer/
+#
+
+# Brief View of Site
+![9ee266a9a478777848d085373e2f8659](https://user-images.githubusercontent.com/79331471/114075726-7b26e000-986b-11eb-9820-ec3598385c58.png)
+
+# We added a search bar, search button and a history button that shows previous search inputs.
+
+![64b5305d0a58b2dabe0e248710a0858d](https://user-images.githubusercontent.com/79331471/114076461-4cf5d000-986c-11eb-8251-a93895c51ff5.png)
+![68b8b3c4ff3eeb0258423068e6853d5b](https://user-images.githubusercontent.com/79331471/114076078-dbb61d00-986b-11eb-9cfb-edf7714b4454.png)
+
+# After you search up an artist, it will bring up 5 different songs from that artist.
+
+
+![901a97ce98e2b31e66c1914e477ee606](https://user-images.githubusercontent.com/79331471/114076201-04d6ad80-986c-11eb-939d-4c6bb94629f9.png)
+![dd6dd7fb0b11d86f8a7bdce59d8e45a9](https://user-images.githubusercontent.com/79331471/114076314-22a41280-986c-11eb-85d7-523158b28365.png)
+
+# You will get better results when searching by song name.
 
 
 
@@ -43,28 +46,17 @@ https://developer.musixmatch.com/
 
 https://developers.google.com/youtube/v3/docs/videos/list
 
-## FLOW
-1. Start
-2. Page Loads
-3. User inputs song name into search field <Y>/<N>
-    3a. <Y> - Video Choices from youtube API populates in left column
-    3c. <N> - Placeholder text stays inside of search field saying "Enter a song name" - does nothing.
-4. User selects song on left side column 
-5. Video populates on upper row in the right column
-6. Below the video - Genius API populates the songs lyrics
+# Due to the current nature of the free version of MusiXMatch - only a portion of the lyrics will populate at this time.
 
 
 
-## What is needed
 
-Top left - Icon of "T" for Tangible / In a block or just a colored Letter mimmicing a shadow effect compared to the background color
-There will be a head to the right of the icon showing the rest of "angible Tunes"
-Search bar to the right of the the Logo along with a button for searching
-Column sticking under the header on the left hand side of the webpage to display video Choices
-Big column on right will be split into 2 sections 
-    Top will display the video
-    Bottom will show the lyrics
-Footer will show the APIs used and the contributors to the project
+# Contributing
+```
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+```
 
 
 
