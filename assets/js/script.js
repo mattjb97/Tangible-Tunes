@@ -1,12 +1,8 @@
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
-
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
-
 var songSearches = [];
-
-//searches for the song to get lyrics 
 
 
 $('#form').on('click', function (event) {
@@ -27,7 +23,6 @@ function getSongs(songTitle) {
                 var songList = currentData.message.body.track_list;
                 console.log(songList);
                 displayList(songList);
-                // return songList;
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -43,6 +38,25 @@ function displayList(songArray) {
     appendEl.innerHTML = "";
     songArray.forEach(song => {
         var liEl = document.createElement("button")
+        liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) })
+        liEl.textContent = "Artist: " + song.track.artist_name + " - Song: " + song.track.track_name;
+        liEl.classList.add("list-group-item", "songbuttons");
+        appendEl.appendChild(liEl)
+    })
+}
+
+function storeSong () {
+    localStorage.setItem("searchSong", JSON.stringify(songSearches));
+    return;
+};
+
+
+=======
+function displayList(songArray) {
+    var appendEl = document.querySelector(".list-group");
+    appendEl.innerHTML = "";
+    songArray.forEach(song => {
+        var liEl = document.createElement("button")
 
         liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) })
 
@@ -52,14 +66,9 @@ function displayList(songArray) {
 
         appendEl.appendChild(liEl)
     })
+
+
 }
-
-
-function storeSong () {
-    localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    return;
-};
-
 
 function apiFX(songID, songArtist, songName) {
     var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
@@ -72,12 +81,7 @@ function apiFX(songID, songArtist, songName) {
                 console.log(lyrics);
                 console.log(songArtist);
                 console.log(songName);
-                // var songList=currentData.message.body.track_list;
-                // console.log(songList);
-                // displayList(songList);
-
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
-
                 lyricsLocation.innerHTML = lyricsPop;
 
             });
@@ -90,11 +94,6 @@ function apiFX(songID, songArtist, songName) {
         });
 
 }
-
-
-
-
-// youtube video function 
 
 var youtubekey = 'AIzaSyDGxdfjPLDMkjD0Cvi9dU8d66Pv1SlJ08k'
 var video = ''
