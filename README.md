@@ -36,11 +36,15 @@
 
 
 
+# You will need the CORS Unblock Extension to run this application
+![d2f1d2dbf272e0bc240a5bde7c312d55](https://user-images.githubusercontent.com/79331471/114088796-05c30b80-987b-11eb-89b6-b8dc15f4ec53.png)
+
+[Here is the link for CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=en)
 
 
 
 
- ## APIs being used
+ # APIs being used
 
 https://developer.musixmatch.com/
 
