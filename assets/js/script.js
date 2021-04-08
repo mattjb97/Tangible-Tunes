@@ -12,9 +12,6 @@ var previousSearch = document.querySelector('#searchHistory')
 //searches for the song to get lyrics 
 
 
-
-
-
 // when clicking the search button the result is then taken and given a variable 
 
 $('#form').on('click', function (event) {
@@ -62,122 +59,119 @@ function getSongs(songTitle) {
 
 
 
-function storeSong() {
 
-//stores the searches in local storage 
-function storeSong () {
 
-    localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    getSongHistory();
-};
+    //stores the searches in local storage 
+    function storeSong() {
 
-function getSongHistory() {
-    songSearchList = JSON.parse(localStorage.getItem("searchSong"));
-    if (!songSearchList) {
-        console.log('no history yet');
-    } else {
-        console.log(songSearchList);
-        printSongHistory(songSearchList);
+        localStorage.setItem("searchSong", JSON.stringify(songSearches));
+        getSongHistory();
+    };
+
+    function getSongHistory() {
+        songSearchList = JSON.parse(localStorage.getItem("searchSong"));
+        if (!songSearchList) {
+            console.log('no history yet');
+        } else {
+            console.log(songSearchList);
+            printSongHistory(songSearchList);
+        }
+    };
+
+
+    function printSongHistory(songSearchList) {
+        previousSearch.innerHTML = '';
+        for (var i = 0; i < songSearchList.length; i++) {
+            var liEl2 = document.createElement("li");
+            liEl2.textContent = songSearchList[i];
+            previousSearch.appendChild(liEl2)[i];
+        }
     }
-};
 
 
-function printSongHistory(songSearchList) {
-    previousSearch.innerHTML = '';
-    for (var i = 0; i < songSearchList.length; i++) {
-        var liEl2 = document.createElement("li");
-        liEl2.textContent = songSearchList[i];
-        previousSearch.appendChild(liEl2)[i];
+    // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
+
+    function displayList(songArray) {
+        var appendEl = document.querySelector(".list-group");
+        appendEl.innerHTML = "";
+        songArray.forEach(song => {
+            var liEl = document.createElement("button")
+            //give the buttons a click function that runs the apiFX function
+            liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) })
+            liEl.textContent = "Artist: " + song.track.artist_name + " - Song: " + song.track.track_name;
+            liEl.classList.add("list-group-item", "songbuttons");
+            appendEl.appendChild(liEl)
+        })
     }
-}
 
 
-// once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
+    //the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
 
-function displayList(songArray) {
-    var appendEl = document.querySelector(".list-group");
-    appendEl.innerHTML = "";
-    songArray.forEach(song => {
-        var liEl = document.createElement("button")
-        //give the buttons a click function that runs the apiFX function
-        liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) })
-        liEl.textContent = "Artist: " + song.track.artist_name + " - Song: " + song.track.track_name;
-        liEl.classList.add("list-group-item", "songbuttons");
-        appendEl.appendChild(liEl)
-    })
-}
+    function apiFX(songID, songArtist, songName) {
+        var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
+        console.log(apiUrl2);
+        fetch(apiUrl2).then(function (response) {
+            if (response.ok) {
+                response.json().then(data => {
+                    console.log(lyrics);
+                    console.log(songArtist);
+                    console.log(songName);
+                    var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
 
 
-//the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
-
-function apiFX(songID, songArtist, songName) {
-    var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
-    console.log(apiUrl2);
-    fetch(apiUrl2).then(function (response) {
-        if (response.ok) {
-            response.json().then(data => {
-                console.log(lyrics);
-                console.log(songArtist);
-                console.log(songName);
-                var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
-
-
-                lyricsLocation.innerHTML = lyricsPop;
+                    lyricsLocation.innerHTML = lyricsPop;
 
 
 
 
-                lyricsLocation.innerHTML = lyricsPop;
+                    lyricsLocation.innerHTML = lyricsPop;
 
-            });
-            // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
-            if (lyricsPop === undefined) {
-                lyricsLocation.innerHTML = 'No lyrics found';
+                });
+                // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
+                if (lyricsPop === undefined) {
+                    lyricsLocation.innerHTML = 'No lyrics found';
+
+                }
+
+
+            } else {
+                lyricsLocation.innerHTML = 'Error: ' + response.statusText;
 
             }
+        })
+            .catch(function (error) {
+                lyricsLocation.innerHTML = 'No Lyrics Found';
 
+            });
+    }
 
-        } else {
-            lyricsLocation.innerHTML = 'Error: ' + response.statusText;
+    //adds the previous serches to local storage 
+ 
 
-        }
+    //sets variables for youtubes api key and the search input on click
+    var youtubekey = 'AIzaSyClOnNDd4howxJo-Q-1PXhG2Y__Jo44jP4'
+    var video = ''
+    $('#form').on('click', function (event) {
+        event.preventDefault()
+        console.log('clicked')
+        var search = $('#search').val()
+        //declares variables for the videoSearch function
+        videoSearch(youtubekey, search, 5)
+        console.log(search.value)
     })
-        .catch(function (error) {
-            lyricsLocation.innerHTML = 'No Lyrics Found';
-
-        });
-}
-
-//adds the previous serches to local storage 
-function storeSong() {
-    localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    return;
-};
-
-//sets variables for youtubes api key and the search input on click
-var youtubekey = 'AIzaSyClOnNDd4howxJo-Q-1PXhG2Y__Jo44jP4'
-var video = ''
-$('#form').on('click', function (event) {
-    event.preventDefault()
-    console.log('clicked')
-    var search = $('#search').val()
-    //declares variables for the videoSearch function
-    videoSearch(youtubekey, search, 5)
-    console.log(search.value)
-})
-//takes the variables runs them through the youtube API and then dynamically generates the videos on the right
-function videoSearch(key, search, maxResults) {
-    $('#videos').empty()
-    $.get('https://www.googleapis.com/youtube/v3/search?key=' + key +
-        '&type=video&part=snippet&maxResults=' + maxResults + '&q=' + search, function (data) {
-            console.log(data)
-            data.items.forEach(item => {
-                video = `
+    //takes the variables runs them through the youtube API and then dynamically generates the videos on the right
+    function videoSearch(key, search, maxResults) {
+        $('#videos').empty()
+        $.get('https://www.googleapis.com/youtube/v3/search?key=' + key +
+            '&type=video&part=snippet&maxResults=' + maxResults + '&q=' + search, function (data) {
+                console.log(data)
+                data.items.forEach(item => {
+                    video = `
                 <iframe class="has-ratio" width="360" height="360" src="https://www.youtube.com/embed/${item.id.videoId}" frameborder="0" 
                 allowfullscreen></iframe>
                 `
-                $('#videos').append(video)
-            });
-        })
-}
+                    $('#videos').append(video)
+                });
+            })
+    }
 
