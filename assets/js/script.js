@@ -23,6 +23,8 @@ $('#form').on('click', function (event) {
     videoLocation.style.visibility = 'visible';
     lyricsLocation.style.visibility = 'visible';
     songListT.style.visibility = 'visible';
+
+
 })
 
 function getSongs(songTitle) {
@@ -34,8 +36,12 @@ function getSongs(songTitle) {
                 var songList = currentData.message.body.track_list;
                 console.log(songList);
                 displayList(songList);
+
                 return songList;
                 
+
+                // return songList;
+
             });
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
@@ -59,9 +65,9 @@ function displayList(songArray) {
     var appendEl = document.querySelector(".list-group");
     appendEl.innerHTML = "";
     songArray.forEach(song => {
-        var liEl = document.createElement("button");
+        var liEl = document.createElement("button")
 
-        liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) });
+        liEl.addEventListener("click", function () { apiFX(song.track.track_id, song.track.artist_name, song.track.track_name) })
 
         liEl.textContent = "Artist: " + song.track.artist_name + " - Song: " + song.track.track_name;
 
