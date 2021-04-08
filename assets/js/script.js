@@ -3,26 +3,14 @@ var input = document.querySelector('#search')
 var songListT = document.querySelector('.songList');
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
-
-
-var songSearchList = [];
 var songSearches = [];
-var previousSearch = document.querySelector('#searchHistory')
-
-//searches for the song to get lyrics 
-
-
-
-
 
 // when clicking the search button the result is then taken and given a variable 
-
 $('#form').on('click', function (event) {
     event.preventDefault()
     var search = $('#search').val()
     songSearches.push(search);
     storeSong(songSearches);
-
     getSongs(search)
     //removes old lyrics and clears search bar on the click
     lyricsLocation.innerHTML = "";
@@ -42,14 +30,6 @@ function getSongs(songTitle) {
                 var songList = currentData.message.body.track_list;
                 console.log(songList);
                 displayList(songList);
-
-
-                return songList;
-
-
-                // return songList;
-
-
             });
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
@@ -62,38 +42,14 @@ function getSongs(songTitle) {
 
 
 
-function storeSong() {
-
 //stores the searches in local storage 
 function storeSong () {
-
     localStorage.setItem("searchSong", JSON.stringify(songSearches));
-    getSongHistory();
+    return;
 };
-
-function getSongHistory() {
-    songSearchList = JSON.parse(localStorage.getItem("searchSong"));
-    if (!songSearchList) {
-        console.log('no history yet');
-    } else {
-        console.log(songSearchList);
-        printSongHistory(songSearchList);
-    }
-};
-
-
-function printSongHistory(songSearchList) {
-    previousSearch.innerHTML = '';
-    for (var i = 0; i < songSearchList.length; i++) {
-        var liEl2 = document.createElement("li");
-        liEl2.textContent = songSearchList[i];
-        previousSearch.appendChild(liEl2)[i];
-    }
-}
 
 
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
-
 function displayList(songArray) {
     var appendEl = document.querySelector(".list-group");
     appendEl.innerHTML = "";
@@ -109,7 +65,6 @@ function displayList(songArray) {
 
 
 //the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
-
 function apiFX(songID, songArtist, songName) {
     var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
     console.log(apiUrl2);
@@ -120,31 +75,23 @@ function apiFX(songID, songArtist, songName) {
                 console.log(songArtist);
                 console.log(songName);
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
-
-
                 lyricsLocation.innerHTML = lyricsPop;
-
-
-
-
-                lyricsLocation.innerHTML = lyricsPop;
-
             });
             // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
             if (lyricsPop === undefined) {
                 lyricsLocation.innerHTML = 'No lyrics found';
 
             }
-
-
+           
+           
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
-
+            
         }
     })
         .catch(function (error) {
             lyricsLocation.innerHTML = 'No Lyrics Found';
-
+            
         });
 }
 
