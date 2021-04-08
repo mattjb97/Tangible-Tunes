@@ -3,7 +3,7 @@ var input = document.querySelector('#search')
 var songListT = document.querySelector('.songList');
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
-<<<<<<< HEAD
+
 
 var songSearchList = [];
 var songSearches = [];
@@ -12,8 +12,8 @@ var previousSearch = document.querySelector('#searchHistory')
 //searches for the song to get lyrics 
 
 
-=======
-var songSearches = [];
+
+
 
 // when clicking the search button the result is then taken and given a variable 
 >>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
@@ -42,15 +42,14 @@ function getSongs(songTitle) {
                 var songList = currentData.message.body.track_list;
                 console.log(songList);
                 displayList(songList);
-<<<<<<< HEAD
+
 
                 return songList;
 
 
                 // return songList;
 
-=======
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
             });
         } else {
             lyricsLocation.innerHTML = 'Error: ' + response.statusText;
@@ -63,7 +62,6 @@ function getSongs(songTitle) {
 
 
 
-<<<<<<< HEAD
 function storeSong() {
 =======
 //stores the searches in local storage 
@@ -83,7 +81,7 @@ function getSongHistory() {
     }
 };
 
-<<<<<<< HEAD
+
 function printSongHistory(songSearchList) {
     previousSearch.innerHTML = '';
     for (var i = 0; i < songSearchList.length; i++) {
@@ -93,7 +91,7 @@ function printSongHistory(songSearchList) {
     }
 }
 
-=======
+
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
 >>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
 function displayList(songArray) {
@@ -110,8 +108,6 @@ function displayList(songArray) {
 }
 
 
-<<<<<<< HEAD
-=======
 //the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
 >>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
 function apiFX(songID, songArtist, songName) {
@@ -124,15 +120,15 @@ function apiFX(songID, songArtist, songName) {
                 console.log(songArtist);
                 console.log(songName);
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
-<<<<<<< HEAD
+
 
                 lyricsLocation.innerHTML = lyricsPop;
 
 
 
-=======
+
                 lyricsLocation.innerHTML = lyricsPop;
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
             });
             // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
             if (lyricsPop === undefined) {
