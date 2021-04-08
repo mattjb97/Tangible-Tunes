@@ -16,7 +16,7 @@ var previousSearch = document.querySelector('#searchHistory')
 
 
 // when clicking the search button the result is then taken and given a variable 
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
 $('#form').on('click', function (event) {
     event.preventDefault()
     var search = $('#search').val()
@@ -63,7 +63,7 @@ function getSongs(songTitle) {
 
 
 function storeSong() {
-=======
+
 //stores the searches in local storage 
 function storeSong () {
 >>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
@@ -93,7 +93,7 @@ function printSongHistory(songSearchList) {
 
 
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
 function displayList(songArray) {
     var appendEl = document.querySelector(".list-group");
     appendEl.innerHTML = "";
@@ -109,7 +109,7 @@ function displayList(songArray) {
 
 
 //the buttons have data about each song from the API call this function takes the data from the previous call and puts it back into the API to then generate the lyrics into a new box 
->>>>>>> 189fd60f5b284e65b7cb4315820c9c4feca342d2
+
 function apiFX(songID, songArtist, songName) {
     var apiUrl2 = 'https://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=' + songID + '&apikey=6a4d09aa7c7bc21dd8f981caaf324cda';
     console.log(apiUrl2);
