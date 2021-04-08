@@ -1,9 +1,14 @@
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
+var songListT = document.querySelector('.songList');
+
+
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
 
-
+var songSearchList = [];
+var songSearches = [];
+var previousSearch = document.querySelector('#searchHistory')
 
 //searches for the song to get lyrics 
 
@@ -11,8 +16,16 @@ var lyricsLocation = document.querySelector('.boxLyrics')
 $('#form').on('click', function (event) {
     event.preventDefault()
     var search = $('#search').val()
+    songSearches.push(search);
+    storeSong(songSearches);
+
     getSongs(search)
     lyricsLocation.innerHTML = "";
+    videoLocation.style.visibility = 'visible';
+    lyricsLocation.style.visibility = 'visible';
+    songListT.style.visibility = 'visible';
+
+
 })
 
 function getSongs(songTitle) {
@@ -24,16 +37,47 @@ function getSongs(songTitle) {
                 var songList = currentData.message.body.track_list;
                 console.log(songList);
                 displayList(songList);
+
+                return songList;
+
+
                 // return songList;
+
             });
         } else {
-            alert('Error: ' + response.statusText);
+            lyricsLocation.innerHTML = 'Error: ' + response.statusText;
         }
     })
         .catch(function (error) {
-            alert('Unable to connect to MusiXmatch');
+            lyricsLocation.innerHTML = 'Unable to connect to MusiXmatch';
         });
 };
+
+
+
+function storeSong() {
+    localStorage.setItem("searchSong", JSON.stringify(songSearches));
+    getSongHistory();
+};
+
+function getSongHistory() {
+    songSearchList = JSON.parse(localStorage.getItem("searchSong"));
+    if (!songSearchList) {
+        console.log('no history yet');
+    } else {
+        console.log(songSearchList);
+        printSongHistory(songSearchList);
+    }
+};
+
+function printSongHistory(songSearchList) {
+    previousSearch.innerHTML = '';
+    for (var i = 0; i < songSearchList.length; i++) {
+        var liEl2 = document.createElement("li");
+        liEl2.textContent = songSearchList[i];
+        previousSearch.appendChild(liEl2)[i];
+    }
+}
 
 function displayList(songArray) {
     var appendEl = document.querySelector(".list-group");
@@ -65,21 +109,28 @@ function apiFX(songID, songArtist, songName) {
                 console.log(lyrics);
                 console.log(songArtist);
                 console.log(songName);
-                // var songList=currentData.message.body.track_list;
-                // console.log(songList);
-                // displayList(songList);
-
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
 
                 lyricsLocation.innerHTML = lyricsPop;
 
+
+
             });
+            // This allows the catch to product the innerHTML
+            if (lyricsPop === undefined) {
+                lyricsLocation.innerHTML = 'No lyrics found';
+
+            }
+
+
         } else {
-            alert('Error: ' + response.statusText);
+            lyricsLocation.innerHTML = 'Error: ' + response.statusText;
+
         }
     })
         .catch(function (error) {
-            alert('Unable to connect to MusiXmatch');
+            lyricsLocation.innerHTML = 'No Lyrics Found';
+
         });
 
 }
