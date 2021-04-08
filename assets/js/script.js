@@ -1,16 +1,24 @@
 var searchbutton = document.querySelector('.is-info')
 var input = document.querySelector('#search')
+var songListT = document.querySelector('.songList');
 var videoLocation = document.querySelector('.boxVideo')
 var lyricsLocation = document.querySelector('.boxLyrics')
-
+var songSearches = [];
 
 // when clicking the search button the result is then taken and given a variable 
 $('#form').on('click', function (event) {
     event.preventDefault()
     var search = $('#search').val()
+    songSearches.push(search);
+    storeSong(songSearches);
     getSongs(search)
     //removes old lyrics and clears search bar on the click
     lyricsLocation.innerHTML = "";
+    videoLocation.style.visibility = 'visible';
+    lyricsLocation.style.visibility = 'visible';
+    songListT.style.visibility = 'visible';
+
+
 })
 //takes value on the input variable and places it into the URL of the musixmatch API 
 function getSongs(songTitle) {
@@ -24,13 +32,22 @@ function getSongs(songTitle) {
                 displayList(songList);
             });
         } else {
-            alert('Error: ' + response.statusText);
+            lyricsLocation.innerHTML = 'Error: ' + response.statusText;
         }
     })
         .catch(function (error) {
-            alert('Unable to connect to MusiXmatch');
+            lyricsLocation.innerHTML = 'Unable to connect to MusiXmatch';
         });
 };
+
+
+
+//stores the searches in local storage 
+function storeSong () {
+    localStorage.setItem("searchSong", JSON.stringify(songSearches));
+    return;
+};
+
 
 // once the songs are retreved this dynamically produces buttons into the 'Song Choices and Lyrics' box for the top five results  
 function displayList(songArray) {
@@ -60,12 +77,21 @@ function apiFX(songID, songArtist, songName) {
                 var lyricsPop = data['message']['body']['lyrics']['lyrics_body'];
                 lyricsLocation.innerHTML = lyricsPop;
             });
+            // if there are no lyics assigned to a button it instead pastes 'no lyrics found'
+            if (lyricsPop === undefined) {
+                lyricsLocation.innerHTML = 'No lyrics found';
+
+            }
+           
+           
         } else {
-            alert('Error: ' + response.statusText);
+            lyricsLocation.innerHTML = 'Error: ' + response.statusText;
+            
         }
     })
         .catch(function (error) {
-            alert('Unable to connect to MusiXmatch');
+            lyricsLocation.innerHTML = 'No Lyrics Found';
+            
         });
 }
 
