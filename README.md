@@ -6,6 +6,7 @@
 ## Active Link
 
 
+Click [here](https://mattjb97.github.io/Tangible-Tunes/) to be directed to the website.
 
 
 
@@ -34,12 +35,16 @@
 
 # You will get better results when searching by song name.
 
+![75e3fbf88d2cda4aca697066ff19ee96](https://user-images.githubusercontent.com/79331471/114210906-a2da7e80-9925-11eb-8ec2-ab70f9904a71.png)
+
 
 
 # You will need the CORS Unblock Extension to run this application
 ![d2f1d2dbf272e0bc240a5bde7c312d55](https://user-images.githubusercontent.com/79331471/114088796-05c30b80-987b-11eb-89b6-b8dc15f4ec53.png)
 
 [Here is the link for CORS Unblock](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?hl=en)
+
+
 
 
 
